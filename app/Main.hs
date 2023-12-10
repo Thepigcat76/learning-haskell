@@ -1,16 +1,12 @@
 module Main where
 
-addTwo :: Integer -> Integer -> Integer
-addTwo x y = x + y
-
-printStuff :: Show a => a -> IO ()
-printStuff text = do
-    putStrLn $ "Your text: " ++ show text
-    putStrLn "Thank you :3"
+iterateList :: Show a => [a] -> IO ()
+iterateList []     = putStrLn "End of list"
+iterateList (x:xs) = do
+    putStrLn $ "Processing element: " ++ show x
+    iterateList xs
 
 main :: IO ()
 main = do
-  putStrLn "Hello, World!"
-  let result = addTwo 1 2
-  putStrLn $ "Result: " ++ show result
-  printStuff "Sussy baka"
+    let myList = [1 :: Integer, 2, 3, 4, 5]
+    iterateList myList
